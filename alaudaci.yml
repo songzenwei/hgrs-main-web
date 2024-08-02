@@ -1,0 +1,13 @@
+version: "0.1.0"
+pre_ci_boot:
+  image: 10.200.16.14:60080/customer/u14nodejs
+  tag: v8.9.4-1
+ci:
+  - cp /root/.npmrc /home/jenkins/
+  - cp -r /u14node/node_modules ./
+  - npm install
+  - npm run build 
+  - cp Dockerfile $ALAUDACI_DEST_DIR/Dockerfile
+  - cp nginx.conf $ALAUDACI_DEST_DIR/nginx.conf
+  - cp -r dist $ALAUDACI_DEST_DIR
+
